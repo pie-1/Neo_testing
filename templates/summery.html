@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEO Data</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Near-Earth Object Data</h1>
+    <p>Total number of NEOs: {{ total_neos }}</p>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Epoch (MJD)</th>
+        <th>Semi-Major Axis (AU)</th>
+        <th>Eccentricity</th>
+        <th>Inclination (deg)</th>
+        <th>Absolute Magnitude</th>
+        <th>NEO Class</th>
+        <th>NEO Diameter (km)</th>
+      </tr>
+      {% if neo_data is not none %} {% for index, row in neo_data.iterrows() %}
+      <tr>
+        <td>{{ row['Name'] }}</td>
+        <td>{{ row['Epoch_MJD'] }}</td>
+        <td>{{ row['SemMajAxis_AU'] }}</td>
+        <td>{{ row['Ecc_'] }}</td>
+        <td>{{ row['Incl_deg'] }}</td>
+        <td>{{ row['AbsMag_'] }}</td>
+        <td>{{ row['NEOClass'] }}</td>
+        <td>{{ row['NEO_Diameter'] }}</td>
+      </tr>
+      {% endfor %} {% else %}
+      <tr>
+        <td colspan="8">No data available.</td>
+      </tr>
+      {% endif %}
+    </table>
+    <p>Total number of NEOs in risk list: {{ risk_neos }}</p>
+    <p>Total number of past impactors: {{ impact_neos }}</p>
+  </body>
+</html>
